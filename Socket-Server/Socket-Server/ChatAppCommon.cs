@@ -7,11 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Socket_Server {
-    internal class ChatAppCommon {
-    }
 
     //通信データクラス
-    public class CommunicatinData {
+    public class CommunicationData {
         //通信データサイズ最大値
         const int MAX_COMMUNICATION_DATA_SIZE = 5120;
 
@@ -21,7 +19,7 @@ namespace Socket_Server {
         //通信クライアント
         public TcpClientEx Client { get; private set; }
 
-        public CommunicatinData(TcpClientEx info)
+        public CommunicationData(TcpClientEx info)
         {
             Client = info;
         }
