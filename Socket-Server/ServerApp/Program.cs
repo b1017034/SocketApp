@@ -4,8 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Socket_Server {
-    internal static class Program {
+namespace ServerApp
+{
+    internal static class Program
+    {
         /// <summary>
         /// アプリケーションのメイン エントリ ポイントです。
         /// </summary>
@@ -14,7 +16,7 @@ namespace Socket_Server {
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new ServerForm());
         }
     }
 }
