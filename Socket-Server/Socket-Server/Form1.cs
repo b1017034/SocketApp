@@ -242,7 +242,7 @@ namespace Socket_Server {
 
                 // サーバーを作成して監視開始
                 //var localEndPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), int.Parse(port));
-                var localEndPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), port);
+                var localEndPoint = new IPEndPoint(IPAddress.Parse("192.168.3.1"), port);
                 Server = new TcpListenerEx(localEndPoint);
                 Server.Start();
 
