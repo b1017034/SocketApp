@@ -4,12 +4,12 @@ using System.Runtime.InteropServices;
 
 // アセンブリに関する一般情報は以下の属性セットをとおして制御されます。
 // 制御されます。アセンブリに関連付けられている情報を変更するには、
-// これらの属性値を変更します。
-[assembly: AssemblyTitle("Socket-Server")]
+// これらの属性値を変更してください。
+[assembly: AssemblyTitle("ChatAppCommon")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Socket-Server")]
+[assembly: AssemblyProduct("ChatAppCommon")]
 [assembly: AssemblyCopyright("Copyright ©  2022")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // このプロジェクトが COM に公開される場合、次の GUID が typelib の ID になります
-[assembly: Guid("1597e680-3fcc-45ab-a8fe-2bc1b3530afc")]
+[assembly: Guid("937ad116-1843-4619-94ef-088eb2e6a235")]
 
 // アセンブリのバージョン情報は、以下の 4 つの値で構成されています:
 //
