@@ -23,8 +23,8 @@
         #region Windows フォーム デザイナーで生成されたコード
 
         /// <summary>
-        /// デザイナー サポートに必要なメソッドです。このメソッドの内容を
-        /// コード エディターで変更しないでください。
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
@@ -48,8 +48,7 @@
             // 
             // gbSettings
             // 
-            this.gbSettings.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbSettings.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this.gbSettings.Controls.Add(this.btnStart);
             this.gbSettings.Controls.Add(this.btnEnd);
             this.gbSettings.Controls.Add(this.txtPort);
@@ -86,9 +85,10 @@
             // 
             // txtPort
             // 
+            this.txtPort.AllowDrop = true;
             this.txtPort.Location = new System.Drawing.Point(167, 21);
             this.txtPort.Name = "txtPort";
-            this.txtPort.Size = new System.Drawing.Size(124, 23);
+            this.txtPort.Size = new System.Drawing.Size(111, 23);
             this.txtPort.TabIndex = 1;
             this.txtPort.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -104,9 +104,7 @@
             // 
             // ssStatus
             // 
-            this.ssStatus.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.sslblStatus,
-            this.sslblMargin});
+            this.ssStatus.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { this.sslblStatus, this.sslblMargin });
             this.ssStatus.Location = new System.Drawing.Point(0, 439);
             this.ssStatus.Name = "ssStatus";
             this.ssStatus.Padding = new System.Windows.Forms.Padding(1, 0, 16, 0);
@@ -128,8 +126,7 @@
             // 
             // gpConnectingClient
             // 
-            this.gpConnectingClient.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gpConnectingClient.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this.gpConnectingClient.Controls.Add(this.lbConnectingClient);
             this.gpConnectingClient.Location = new System.Drawing.Point(12, 81);
             this.gpConnectingClient.Margin = new System.Windows.Forms.Padding(4);
@@ -153,9 +150,7 @@
             // 
             // gpConnectionLog
             // 
-            this.gpConnectionLog.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gpConnectionLog.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this.gpConnectionLog.Controls.Add(this.lbLog);
             this.gpConnectionLog.Location = new System.Drawing.Point(13, 193);
             this.gpConnectionLog.Margin = new System.Windows.Forms.Padding(4);
@@ -200,7 +195,6 @@
             this.gpConnectionLog.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion

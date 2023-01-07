@@ -15,21 +15,17 @@ namespace ServerApp
 {
     public partial class ServerForm : Form
     {
-        /// <summary>
-        /// TCPサーバー。
-        /// </summary>
+        // WebSocketサーバー
         private TcpListenerEx Server { get; set; }
+        /// 接続中クライアント
+        private TcpClientEx Client { get; set; }
 
-        /// <summary>
-        /// 接続中クライアントリスト。
-        /// </summary>
-        private SynchronizedCollection<TcpClientEx> ClientList { get; set; }
+        private int Port = 8080;
 
         public ServerForm()
         {
             InitializeComponent();
-
-            ClientList = new SynchronizedCollection<TcpClientEx>();
+            txtPort.Text = Port.ToString();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -40,15 +36,10 @@ namespace ServerApp
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            var port = txtPort.Text.Trim();
-
             try
             {
-                // 接続情報有効チェック
-                if (!CheckConnectionSettings(port)) return;
-
                 // サーバーを作成して監視開始
-                var localEndPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), int.Parse(port));
+                var localEndPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), Port);
                 Server = new TcpListenerEx(localEndPoint);
                 Server.Start();
 
@@ -85,14 +76,7 @@ namespace ServerApp
             lbConnectingClient.Items.Clear();
 
             // 接続中クライアントを全て閉じる
-            lock (ClientList.SyncRoot)
-            {
-                foreach (var client in ClientList)
-                {
-                    client.Socket.Close();
-                }
-                ClientList.Clear();
-            }
+            Client.Socket.Close();
 
             // ボタンの有効状態を設定
             btnStart.Enabled = true;
@@ -203,7 +187,7 @@ namespace ServerApp
                 // 接続中クライアントを追加
                 var clientInfo = new TcpClientEx(client);
                 SetConnectiongClient(client, true);
-                ClientList.Add(clientInfo);
+                Client = clientInfo;
 
                 // クライアントからのデータ受信を待機
                 var data = new CommunicationData(clientInfo);
@@ -217,17 +201,10 @@ namespace ServerApp
 
         private void SendDataToAllClient(CommunicationData data, string text) 
         {
-            lock (ClientList.SyncRoot)
-            {
-                foreach (var client in ClientList.Where(e => !e.Equals(data.Client)))
-                {
-                    // データ送信
-                    client.Socket.Send(Encoding.UTF8.GetBytes(text));
-
-                    // 送信ログを出力
-                    AddLog($"{client.RemoteEndPoint}にデータ送信>>{text}");
-                }
-            }
+            // データ送信
+            Client.Socket.Send(Encoding.UTF8.GetBytes(text));
+            // 送信ログを出力
+            AddLog($"{Client.RemoteEndPoint}にデータ送信>>{text}");
         }
 
         private void ReceiveCallback(IAsyncResult result)
@@ -246,7 +223,7 @@ namespace ServerApp
 
                     // 接続中クライアントを削除
                     SetConnectiongClient(data.Client.Client, false);
-                    ClientList.Remove(data.Client);
+                    Client = null;
 
                     // 接続中クライアント(切断したクライアント以外)に対してクライアントが切断した情報を送信する
                     SendDataToAllClient(data, $"{data.Client.RemoteEndPoint}がサーバーから切断しました。");

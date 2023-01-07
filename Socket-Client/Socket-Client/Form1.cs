@@ -15,18 +15,17 @@ using System.Net.Sockets;
 namespace Socket_Client {
     public partial class Form1 : Form {
         private TcpClientEx Client { get; set; }
-        private string IPadress = "192.168.hoge.fuga";  //環境に合わせる
-        private string soruceIPadress = "192.168.hoge.fuga";
-        private string sorcePort = "1023";
-        private string destPort = "1024";
+        private string IPadress = "127.0.0.1";  //接続先
+        private string destPort = "8080";
+        private string soruceIPadress = "127.0.0.1";
+        private string sorcePort = "8081";
+       
 
         public Form1()
         {
             InitializeComponent();
             try
             {
-                // 接続情報有効チェック
-                if(!CheckConnectionSettings(destPort, sorcePort, IPadress)) return;
                 
                 // 接続先IPEndPoint作成
                 var remoteEndPoint = new IPEndPoint(IPAddress.Parse(IPadress), int.Parse(destPort));
@@ -53,44 +52,6 @@ namespace Socket_Client {
                 //接続ログ出力
                 Console.WriteLine("サーバに接続できませんでした");
             }
-        }
-
-
-        private bool CheckConnectionSettings(string destPort, string sourcePort, string ipAddress)
-        {
-            // ポート番号空チェック
-            if(string.IsNullOrEmpty(destPort) || string.IsNullOrEmpty(sourcePort))
-            {
-                MessageBox.Show("ポート番号が空です。");
-                return false;
-            }
-
-            // ポート番号数値チェック
-            if(!Regex.IsMatch(destPort, "^[0-9]+$") || !Regex.IsMatch(sourcePort, "^[0-9]+$"))
-            {
-                MessageBox.Show("ポート番号は数値を指定してください。");
-                return false;
-            }
-
-            var destPortNum = int.Parse(destPort);
-            var sourcePortNum = int.Parse(sourcePort);
-
-            // ポート番号有効値チェック
-            if(destPortNum < IPEndPoint.MinPort || IPEndPoint.MaxPort < destPortNum ||
-                sourcePortNum < IPEndPoint.MinPort || IPEndPoint.MaxPort < sourcePortNum)
-            {
-                MessageBox.Show("無効なポート番号が指定されています。");
-                return false;
-            }
-
-            // IPアドレス有効チェック
-            if(!IPAddress.TryParse(ipAddress, out IPAddress _))
-            {
-                MessageBox.Show("無効なIPアドレスが指定されています。");
-                return false;
-            }
-
-            return true;
         }
 
         private void ReceiveCallback(IAsyncResult result)
